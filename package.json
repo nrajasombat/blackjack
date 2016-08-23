@@ -15,12 +15,12 @@
     "type": "git",
     "url": "git+https://github.com/vujita/blackjack.git"
   },
-  "author": "Vu Nguyen",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/vujita/blackjack/issues"
   },
-  "homepage": "https://github.com/vujita/blackjack.git#readme",
+  "homepage": "https://github.com/vujita/blackjack#readme",
   "devDependencies": {
     "autoprefixer": "^6.3.7",
     "babel-core": "^6.11.4",
