@@ -26,6 +26,7 @@ function getImageForCard(suit, faceValue) {
     try {
         return require(`./images/${faceValue}_of_${suit}s.svg`.toLowerCase())
     } catch (e) {
+        return '';
         console.log('failed to find image', suit, faceValue, e);
     }
 }

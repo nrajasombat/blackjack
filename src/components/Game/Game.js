@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import * as gameActions from '../../actions/blackjack';
 import Navigation from 'react-toolbox/lib/navigation';
 import Link from 'react-toolbox/lib/link';
-import {Button, IconButton} from 'react-toolbox/lib/button';
+import {Button, Snackbar} from 'react-toolbox/lib/button';
 import PlayingCard from '../PlayingCard';
 import styles from './game.scss';
 const mapStateToProps = (state) => (state.blackjack);
@@ -20,6 +20,10 @@ export default class Game extends Component {
         let {
             playerHand, dealerHand, gameActions, dealerCardValue, playerCardValue, gameOver, playerWins
         } = this.props;
+        let btns = !gameOver ? [
+            <Button key="hit" onClick={gameActions.playerHit}>Hit</Button>,
+            <Button key="stand" onClick={gameActions.playerStand}>Stand</Button>
+        ] : <Button onClick={gameActions.restartGame}>{playerWins ? 'Player' : 'Dealer'} wins, play again?</Button>;
         return (
             <div>
                 <Navigation className={styles.titlebar}>
@@ -28,12 +32,8 @@ export default class Game extends Component {
                           label={"View code for playing card models"}/>
                 </Navigation>
                 <div>
-                    <Button type="button" disabled={gameOver} onClick={gameActions.playerHit}>Hit</Button>
-                    <Button type="button" disabled={gameOver} onClick={gameActions.playerStand}>Stand</Button>
-                    <Button type="button" onClick={gameActions.restartGame}>Restart Game</Button>
+                    {btns}
                 </div>
-                {gameOver &&
-                <h1>{playerWins ? 'Player' : 'Dealer'} wins</h1>}
                 <h1>Dealer Hand:{dealerCardValue}</h1>
                 <p>Dealer must hit if under 17</p>
                 {dealerHand.map((c, i)=>(
